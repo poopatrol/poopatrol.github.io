@@ -22,15 +22,13 @@
       padding: 15px;
       font-family: 'Verdana', sans-serif;
       color: #333;
-      background: #a13564;
-      display: flex;
+      background: #5caf9c;
       justify-content: center;
-      align-items: center;
-
   }
+
   h1 {
       font-family: 'Arial Black', sans-serif;
-      font-size: 5rem;
+      font-size: 4rem;
       margin: 0;
       padding: 15px;
       line-height: 1.5;
@@ -55,10 +53,13 @@
       color: #60da7d;
       border-radius: 25px;
       margin: 3rem;
+      width: 100%;
       cursor: wait;
       box-shadow:0px 0px 50px 30px #ff00bb ;
       animation-name: bounce, example;
       animation-duration: 4s, 4s;
+      float: left;
+      clear:both;
       padding: 15px;
       }
 
@@ -74,12 +75,12 @@
   a {
       color: #fff;
       font-weight: bold;
-      text-align: left;
+      text-align: center;
       text-decoration: none;
       padding: 15px;
   }
   a:hover {
-      color: #fc74b6;
+      color: #45af34;
       font-weight: bold;
       text-align: center;
       cursor: help;
@@ -90,22 +91,19 @@
 </head>
 
 <body>
-<h1>
-  <div id = "ugly">
-    Are you ugly? Enter your name to find out  
-      <p>
-        <input name="text" id = "input-name">
-        <br>
-        <button type="button" onclick="result();">Am I Ugly</button>
-        <br>
-      </p>
-  </div>
-  </h1>    
-        <br>
-        <br>
-    <span id = "link"></span>
-      <br>
+  <h1>
+    <div id = "ugly">
+      Are you ugly? Enter your name to find out  
+        <p>
+          <input name="text" id = "input-name">
+          <br>
+          <button type="button" onclick="result();">Am I Ugly</button>
+          <br>
+        </p>
+    </div>
+  </h1> 
 
+  <span id = "link"></span>
   
 </body>
 
@@ -117,7 +115,7 @@
     var nameValue = document.getElementById("input-name").value;
     uglyValue.innerHTML = nameValue + ", you are ugly!";
     uglyValue
-    linkEl.innerHTML = "<a href='https://poopatrol.github.io/ugly.html'>click to double check</a>"
+    linkEl.innerHTML = "<div><a href='https://poopatrol.github.io/ugly.html'>click to double check</a></div>"
   }
 </script>
 

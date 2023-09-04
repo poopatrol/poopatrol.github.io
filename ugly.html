@@ -81,11 +81,20 @@
       text-align: center;
       text-decoration: underline;
   }
+
+  .point {
+         		width: 5px;
+         		height: 5px;
+         		position: absolute;
+         		border-radius: 2px;
+         		top: 80px;
+         		left: 15px;
+  }
   </style>
 
 
 </head>
-<body>
+<body id = "siteBody">
 
   <div>
     
@@ -94,6 +103,20 @@
   </div>
   
 </body>
+
+<script>
+  var bodyEl = document.getElementById("siteBody");
+  
+  var onMouseMove = function(e){
+    var point = document.createElement("div");
+    point.className = "point";
+    document.body.appendChild(point);
+    point.style.top = e.clientY + "px";
+    point.style.left = e.clientX + "px";
+  };
+
+  bodyEl.addEventListener("mousemove", onMouseMove);
+</script>
 
 </html>
 
