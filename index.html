@@ -3,106 +3,120 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  html {
-    font-size: 100%;
-    box-sizing: border-box;
-    padding: 15px;
-}
-*, *:before, *:after {
-    box-sizing: inherit;
-}
 
 
-body {
-    margin: 0;
-    height: 100vh;
-    padding: 15px;
-    font-family: 'Verdana', sans-serif;
-    color: #333;
-    background: #a13564;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-h1 {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 5rem;
-    margin: 0;
-    padding: 15px;
-    line-height: 1.5;
-    text-align: center;
-}
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
-    40% {transform: translateY(-60px);} 
-    60% {transform: translateY(-30px);} 
- } 
-
- @keyframes example {
-    0% {background-color: red;}
-    30% {background-color: yellow;}
-    100% {background-color: #bf2873;}
+  <style>
+    html {
+      font-size: 100%;
+      box-sizing: border-box;
+      padding: 15px;
   }
-  
+  *, *:before, *:after {
+      box-sizing: inherit;
+  }
 
-div {
-    background: #bf2873;
-    color: #60da7d;
-    border-radius: 25px;
-    margin: 3rem;
-    cursor: help;
-    box-shadow:0px 0px 50px 30px #ff00bb ;
-    animation-name: bounce, example;
-    animation-duration: 4s, 4s;
-    padding: 15px;
+
+  body {
+      margin: 0;
+      height: 100vh;
+      padding: 15px;
+      font-family: 'Verdana', sans-serif;
+      color: #333;
+      background: #a13564;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+  }
+  h1 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 5rem;
+      margin: 0;
+      padding: 15px;
+      line-height: 1.5;
+      text-align: center;
+  }
+
+  @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+      40% {transform: translateY(-60px);} 
+      60% {transform: translateY(-30px);} 
+  } 
+
+  @keyframes example {
+      0% {background-color: red;}
+      30% {background-color: yellow;}
+      100% {background-color: #bf2873;}
     }
+    
 
-p {
-    font-size: 1.5rem;
-    line-height: 1.4;
-    text-align: center;
-    margin-right: 80px;
-    margin-left: 80px;
-    padding: 15px;
-}
-/* links */
-a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 15px;
-}
-a:hover {
-    color: #fc74b6;
-    font-weight: bold;
-    text-decoration: underline;
-}
-</style>
+  div {
+      background: #bf2873;
+      color: #60da7d;
+      border-radius: 25px;
+      margin: 3rem;
+      cursor: help;
+      box-shadow:0px 0px 50px 30px #ff00bb ;
+      animation-name: bounce, example;
+      animation-duration: 4s, 4s;
+      padding: 15px;
+      }
+
+  p {
+      font-size: 3rem;
+      line-height: 1.4;
+      text-align: center;
+      margin-right: 80px;
+      margin-left: 80px;
+      padding: 15px;
+  }
+  /* links */
+  a {
+      color: #fff;
+      font-weight: bold;
+      text-align: left;
+      text-decoration: none;
+      padding: 15px;
+  }
+  a:hover {
+      color: #fc74b6;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: underline;
+  }
+  </style>
 
 </head>
 
 <body>
-
-  <div>
-    <h1>Are you ugly? Enter your name to find out</h1>  
+<h1>
+  <div id = "ugly">
+    Are you ugly? Enter your name to find out  
       <p>
         <input name="text" id = "input-name">
         <br>
         <button type="button" onclick="result();">Am I Ugly</button>
-        <span id = "ugly"> </span>  
-    </form>
-    </div>
+        <br>
+      </p>
+  </div>
+  </h1>    
+        <br>
+        <br>
+    <span id = "link"></span>
+      <br>
+
   
 </body>
 
 <script>
   var uglyValue = document.getElementById("ugly");
+  var linkEl = document.getElementById('link');
 
   function result() {
     var nameValue = document.getElementById("input-name").value;
-    uglyValue = nameValue;
+    uglyValue.innerHTML = nameValue + ", you are ugly!";
+    uglyValue
+    linkEl.innerHTML = "<a href='https://poopatrol.github.io/ugly.html'>click to double check</a>"
   }
 </script>
 
