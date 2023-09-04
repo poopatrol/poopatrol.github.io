@@ -9,13 +9,20 @@
 
   <div>
     
-    <h1>Hello!</h1>
+    <h1>Hello! <span id = "person-name"></span></h1>
 
     <p>Your face is ugly</p>
     
     </div>
   
 </body>
+
+<script>
+var personName = document.getElementById("person-name");
+var idname = document.getElementById("input-name");
+personName.innerHTML = idname;
+
+</script>
 
 </html>
 
