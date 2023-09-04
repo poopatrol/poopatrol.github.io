@@ -86,17 +86,25 @@ a:hover {
 <body>
 
   <div>
-    <h1>Are you ugly? Enter your name to find out</h1>
-        
-    <form action = "/ugly.html" method = "post">
-      <dl>
-        <p>
+    <h1>Are you ugly? Enter your name to find out</h1>  
+      <p>
         <input name="text" id = "input-name">
-      </dl>
-      <p><input type=submit value='Am I ugly'>
+        <br>
+        <button type="button" onclick="result();">Am I Ugly</button>
+        <span id = "ugly"> </span>  
     </form>
     </div>
   
 </body>
+
+<script>
+  var uglyValue = document.getElementById("ugly");
+
+  function result() {
+    var nameValue = document.getElementById("input-name").value;
+    uglyValue = nameValue;
+  }
+</script>
+
 </html>
 
