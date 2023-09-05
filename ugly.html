@@ -83,8 +83,9 @@
   }
 
   .point {
-         		width: 5px;
-         		height: 5px;
+         		width: 80px;
+         		height: 50px;
+            color: black;
          		position: absolute;
          		border-radius: 2px;
          		top: 80px;
@@ -110,9 +111,10 @@
   var onMouseMove = function(e){
     var point = document.createElement("div");
     point.className = "point";
+    point.textContent = "UGLY"
     document.body.appendChild(point);
-    point.style.top = e.clientY + "px";
-    point.style.left = e.clientX + "px";
+    point.style.top = e.clientY-30 + "px";
+    point.style.left = e.clientX-30 + "px";
   };
 
   bodyEl.addEventListener("mousemove", onMouseMove);
