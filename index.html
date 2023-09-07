@@ -79,6 +79,7 @@
       text-decoration: none;
       padding: 15px;
   }
+
   a:hover {
       color: #45af34;
       font-weight: bold;
@@ -111,7 +112,7 @@
         <p>
           <input name="text" id = "input-name">
           <br>
-          <button type="button" onclick="result();">Am I Ugly</button>
+          <button type="button" id = "button-name" onclick="result();">Am I Ugly</button>
           <br>
         </p>
     </div>
@@ -125,6 +126,15 @@
   var uglyValue = document.getElementById("ugly");
   var linkEl = document.getElementById('link');
 
+document.getElementById("input-name").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("button-name").click();
+    console.log("clicked");
+  }
+  });
+
+
   function result() {
     var nameValue = document.getElementById("input-name").value;
     uglyValue.innerHTML = nameValue + ", you are ugly!";
@@ -132,12 +142,10 @@
     linkEl.innerHTML = "<div><a href='https://poopatrol.github.io/ugly.html'>click to double check</a></div>"
   }
 
-
   var uglyText1 = document.createElement("div");
   uglyText1.className = "ugly";
   uglyText1.textContent = "ugly!"
   document.body.appendChild(uglyText1);
-
 
   var uglyText2 = document.createElement("div");
   uglyText2.className = "ugly";
@@ -148,8 +156,6 @@
   uglyText3.className = "ugly";
   uglyText3.textContent = "ugly!"
   document.body.appendChild(uglyText3);
-
-
 
   function getRandomInt(min, max) {
     min = Math.ceil(min);
