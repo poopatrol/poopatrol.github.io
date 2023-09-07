@@ -86,6 +86,20 @@
       cursor: help;
       text-decoration: underline;
   }
+
+  .ugly {
+    		width: 80px;
+     		height: 50px;
+        background: #d8ca0c;
+        color: rgb(21, 12, 193);
+        box-shadow:0px 0px 50px 30px #8cdc0c ;
+        animation-name: none;
+        position: absolute;
+        border-radius: 2px;
+        top: 0px;
+        left: 0px;
+  }
+
   </style>
 
 </head>
@@ -117,6 +131,57 @@
     uglyValue
     linkEl.innerHTML = "<div><a href='https://poopatrol.github.io/ugly.html'>click to double check</a></div>"
   }
+
+
+  var uglyText1 = document.createElement("div");
+  uglyText1.className = "ugly";
+  uglyText1.textContent = "ugly!"
+  document.body.appendChild(uglyText1);
+
+
+  var uglyText2 = document.createElement("div");
+  uglyText2.className = "ugly";
+  uglyText2.textContent = "ugly!"
+  document.body.appendChild(uglyText2);
+
+  var uglyText3 = document.createElement("div");
+  uglyText3.className = "ugly";
+  uglyText3.textContent = "ugly!"
+  document.body.appendChild(uglyText3);
+
+
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+  var makeItMove = function() {
+      var newLeft1 = (getRandomInt(0, 100)) * innerWidth/110
+      var newTop1 = (getRandomInt(0, 100)) * innerHeight/110
+
+      var newLeft2 = (getRandomInt(0, 100)) * innerWidth/110
+      var newTop2 = (getRandomInt(0, 100)) * innerHeight/110
+
+      var newLeft3 = (getRandomInt(0, 100)) * innerWidth/110
+      var newTop3 = (getRandomInt(0, 100)) * innerHeight/110
+      
+      uglyText1.style.left = newLeft1 + "px";
+      uglyText1.style.top = newTop1 + "px";
+
+      uglyText2.style.left = newLeft2 + "px";
+      uglyText2.style.top = newTop2 + "px";
+            
+      uglyText3.style.left = newLeft3 + "px";
+      uglyText3.style.top = newTop3 + "px";
+
+    }
+
+  // Step 3: Call that on an interval
+  window.setInterval(makeItMove, 1000);
+
+
 </script>
 
 </html>
