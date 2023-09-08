@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" rel="stylesheet">
+ 
   <style>
     html {
       font-size: 100%;
@@ -20,14 +21,12 @@
       margin: 0;
       height: 100vh;
       padding: 15px;
-      font-family: 'Verdana', sans-serif;
       color: #333;
       background: #5caf9c;
       justify-content: center;
   }
 
   h1 {
-      font-family: 'Arial Black', sans-serif;
       font-size: 4rem;
       margin: 0;
       padding: 15px;
@@ -48,7 +47,7 @@
     }
     
 
-  div {
+  #ugly-div {
       background: #bf2873;
       color: #60da7d;
       border-radius: 25px;
@@ -81,7 +80,7 @@
   }
 
   a:hover {
-      color: #45af34;
+      color: #af34af;
       font-weight: bold;
       text-align: center;
       cursor: help;
@@ -96,6 +95,7 @@
         box-shadow:0px 0px 50px 30px #8cdc0c ;
         animation-name: none;
         position: absolute;
+        text-align: center;
         border-radius: 2px;
         top: 0px;
         left: 0px;
@@ -106,8 +106,28 @@
 </head>
 
 <body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Hello</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor04">
+        <ul class="navbar-nav me-auto">
+          </li>
+            <a class="nav-link" href="/index.html">Are You Ugly</a>
+          </li>
+          </li>
+            <a class="nav-link" href="/waiting.html">Are We There Yet</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <h1>
-    <div id = "ugly">
+    <div id = "ugly-div">
       Are you ugly? Enter your name to find out  
         <p>
           <input name="text" id = "input-name">
@@ -122,8 +142,11 @@
   
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
+
 <script>
-  var uglyValue = document.getElementById("ugly");
+  var uglyValue = document.getElementById("ugly-div");
   var linkEl = document.getElementById('link');
 
 document.getElementById("input-name").addEventListener("keyup", function(event) {
@@ -139,7 +162,7 @@ document.getElementById("input-name").addEventListener("keyup", function(event) 
     var nameValue = document.getElementById("input-name").value;
     uglyValue.innerHTML = nameValue + ", you are ugly!";
     uglyValue
-    linkEl.innerHTML = "<div><a href='https://poopatrol.github.io/ugly.html'>click to double check</a></div>"
+    linkEl.innerHTML = "<h1><a href='https://poopatrol.github.io/ugly.html'>click to double check</a></h1>"
   }
 
   var uglyText1 = document.createElement("div");

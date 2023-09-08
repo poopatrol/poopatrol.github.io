@@ -5,7 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" rel="stylesheet">
   <style>
+    
     html {
       font-size: 100%;
       box-sizing: border-box;
@@ -15,21 +17,28 @@
       box-sizing: inherit;
   }
 
-
   body {
       margin: 0;
       height: 100vh;
       padding: 15px;
-      font-family: 'Verdana', sans-serif;
+      color: #333;
+      background: #5caf9c;
+      justify-content: center;
+  }
+
+
+  #siteBody {
+      margin: 0;
+      height: 90%;
+      width: 80%;
+      padding: 15px;
       color: #333;
       background: #a13564;
-      display: flex;
       justify-content: center;
       align-items: center;
-
   }
+
   h1 {
-      font-family: 'Arial Black', sans-serif;
       font-size: 5rem;
       margin: 0;
       padding: 15px;
@@ -47,14 +56,14 @@
     }
     
 
-  div {
+  .divanimate {
       background: #bf2873;
       color: #60da7d;
       border-radius: 25px;
       margin: 3rem;
       cursor: help;
       box-shadow:0px 0px 50px 30px #ff00bb ;
-      animation-name: bounce, example;
+      animation-name: example;
       animation-duration: 4s, 4s;
       padding: 15px;
       }
@@ -95,9 +104,29 @@
 
 
 </head>
-<body id = "siteBody">
 
-  <div>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Hello</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor04">
+        <ul class="navbar-nav me-auto">
+          </li>
+            <a class="nav-link" href="/index.html">Are You Ugly</a>
+          </li>
+          </li>
+            <a class="nav-link" href="/waiting.html">Are We There Yet</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id = "siteBody" class = "divanimate">
     
     <h1> Sorry, I double checked and you are definitely ugly</h1>
     
@@ -105,12 +134,14 @@
   
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
 <script>
   var bodyEl = document.getElementById("siteBody");
   
   var onMouseMove = function(e){
     var point = document.createElement("div");
-    point.className = "point";
+    point.className = "point divanimate";
     point.textContent = "UGLY"
     document.body.appendChild(point);
     point.style.top = e.clientY-30 + "px";
