@@ -13,92 +13,107 @@
       box-sizing: border-box;
       padding: 15px;
   }
+
   *, *:before, *:after {
       box-sizing: inherit;
   }
 
   body {
-      margin: 0;
-      height: 100vh;
-      padding: 15px;
-      color: #333;
-      background: #5caf9c;
-      justify-content: center;
+    margin: 0;
+    height: 100vh;
+    padding: 15px;
+    color: #333;
+    background: #5caf9c;
+    animation-name: bg-transition;
+    animation-duration: 4s;
+    justify-content: center;
   }
 
 
   #siteBody {
-      margin: 0;
-      height: 90%;
-      width: 80%;
-      padding: 15px;
-      color: #333;
-      background: #a13564;
-      justify-content: center;
-      align-items: center;
+    margin: auto;
+    height: 90%;
+    width: 80%;
+    padding: 15px;
+    color: #333;
+    background: #a13564;
+    justify-content: center;
+    align-items: center;
   }
 
   h1 {
-      font-size: 5rem;
-      margin: 0;
-      padding: 15px;
-      line-height: 1.5;
-      text-align: center;
+    font-size: 5rem;
+    margin: 0;
+    padding: 15px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+
+  @keyframes bg-transition {
+    0%   {background-color:#5caf9c}
+    25%  {background-color:yellowgreen}
+    50%  {background-color:blue}
+    75%  {background-color:yellow}
+    100% {background-color:#5caf9c}
   }
 
   @keyframes example {
-      0% {background-color: red;}
-      20% {background-color: yellow;}
-      40% {background-color: rgb(57, 187, 52);}
-      60% {background-color: rgb(44, 162, 230);}
-      80% {background-color: rgb(114, 98, 236);}
-      100% {background-color: #bf2873;}
-    }
+    0% {background-color: red;}
+    20% {background-color: yellow;}
+    40% {background-color: rgb(57, 187, 52);}
+    60% {background-color: rgb(44, 162, 230);}
+    80% {background-color: rgb(114, 98, 236);}
+    100% {background-color: #bf2873;}
+  }
     
 
   .divanimate {
-      background: #bf2873;
-      color: #60da7d;
-      border-radius: 25px;
-      margin: 3rem;
-      cursor: help;
-      box-shadow:0px 0px 50px 30px #ff00bb ;
-      animation-name: example;
-      animation-duration: 4s, 4s;
-      padding: 15px;
-      }
+    background: #bf2873;
+    color: #60da7d;
+    border-radius: 25px;
+    margin: 3rem;
+    cursor: help;
+    box-shadow:0px 0px 50px 30px #ff00bb ;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: 3;
+    padding: 15px;
+  }
 
   p {
-      font-size: 3rem;
-      line-height: 1.4;
-      text-align: center;
-      margin-right: 80px;
-      margin-left: 80px;
-      padding: 15px;
+    font-size: 3rem;
+    line-height: 1.4;
+    text-align: center;
+    margin-right: 80px;
+    margin-left: 80px;
+    padding: 15px;
   }
+  
   /* links */
   a {
-      color: #fff;
-      font-weight: bold;
-      text-align: left;
-      text-decoration: none;
-      padding: 15px;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    padding: 15px;
   }
+
   a:hover {
-      color: #fc74b6;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: underline;
+  color: #fc74b6;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: underline;
   }
 
   .point {
-         		width: 80px;
-         		height: 50px;
-            color: black;
-         		position: absolute;
-         		border-radius: 2px;
-         		top: 80px;
-         		left: 15px;
+    width: 80px;
+    height: 50px;
+    color: black;
+    position: absolute;
+    border-radius: 2px;
+    top: 80px;
+    left: 15px;
   }
   </style>
 
@@ -125,7 +140,8 @@
       </div>
     </div>
   </nav>
-
+  <br>
+  <br>
   <div id = "siteBody" class = "divanimate">
     
     <h1> Sorry, I double checked and you are definitely ugly</h1>

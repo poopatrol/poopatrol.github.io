@@ -3,51 +3,42 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" rel="stylesheet">
  
   <style>
-    html {
-      font-size: 100%;
-      box-sizing: border-box;
-      padding: 15px;
-  }
-    *, *:before, *:after {
-        box-sizing: inherit;
-    }
 
-
-  body {
-      margin: 0;
-      height: 100vh;
-      padding: 15px;
+    body {
       color: #333;
       background: #5caf9c;
       justify-content: center;
-  }
+      text-align: center;
+    }
 
-  h1 {
-      font-size: 4rem;
-      margin: 0;
+    h1 {
+      font-size: 3rem;
       padding: 15px;
       line-height: 1.5;
       text-align: center;
-  }
+    }
 
-  @keyframes bounce {
+    form {
+      display: inline-block;
+    }
+
+    @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
       40% {transform: translateY(-60px);} 
       60% {transform: translateY(-30px);} 
-  } 
+    } 
 
-  @keyframes example {
+    @keyframes transition {
       0% {background-color: rgb(20, 215, 233);}
       30% {background-color: yellow;}
       100% {background-color: #bf2873;}
     }
-    
+      
 
-  #ugly-div {
+    #ugly-div {
       background: #bf2873;
       color: #60da7d;
       border-radius: 25px;
@@ -55,14 +46,14 @@
       width: 100%;
       cursor: wait;
       box-shadow:0px 0px 50px 30px #ff00bb ;
-      animation-name: bounce, example;
+      animation-name: bounce, transition;
       animation-duration: 4s, 4s;
       float: left;
       clear:both;
       padding: 15px;
-      }
+  }
 
-  p {
+    p {
       font-size: 3rem;
       line-height: 1.4;
       text-align: center;
@@ -70,35 +61,19 @@
       margin-left: 80px;
       padding: 15px;
   }
-  /* links */
-  a {
-      color: #fff;
-      font-weight: bold;
+    
+    .ugly {
+      width: 80px;
+      height: 50px;
+      background: #d8ca0c;
+      color: rgb(21, 12, 193);
+      box-shadow:0px 0px 50px 30px #8cdc0c ;
+      animation-name: none;
+      position: absolute;
       text-align: center;
-      text-decoration: none;
-      padding: 15px;
-  }
-
-  a:hover {
-      color: #af34af;
-      font-weight: bold;
-      text-align: center;
-      cursor: help;
-      text-decoration: underline;
-  }
-
-  .ugly {
-    		width: 80px;
-     		height: 50px;
-        background: #d8ca0c;
-        color: rgb(21, 12, 193);
-        box-shadow:0px 0px 50px 30px #8cdc0c ;
-        animation-name: none;
-        position: absolute;
-        text-align: center;
-        border-radius: 2px;
-        top: 0px;
-        left: 0px;
+      border-radius: 2px;
+      top: 0px;
+      left: 0px;
   }
 
   </style>
@@ -126,17 +101,20 @@
     </div>
   </nav>
 
-  <h1>
-    <div id = "ugly-div">
+  <div id = "ugly-div">
+    <h1>
       Are you ugly? Enter your name to find out  
-        <p>
-          <input name="text" id = "input-name">
-          <br>
-          <button type="button" id = "button-name" onclick="result();">Am I Ugly</button>
-          <br>
-        </p>
-    </div>
-  </h1> 
+    </h1>
+    <p>
+    <form id = "ugly-form">
+      <input name="text" id = "input-name">
+      <br>
+      <br>
+      <button type="submit">Am I Ugly</button>
+      <br>
+    </form>
+    </p>
+  </div>
 
   <span id = "link"></span>
   
@@ -145,70 +123,56 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
   var uglyValue = document.getElementById("ugly-div");
   var linkEl = document.getElementById('link');
 
-document.getElementById("input-name").addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    document.getElementById("button-name").click();
-    console.log("clicked");
-  }
-  });
-
+// results when you click button
 
   function result() {
     var nameValue = document.getElementById("input-name").value;
-    uglyValue.innerHTML = nameValue + ", you are ugly!";
-    uglyValue
-    linkEl.innerHTML = "<h1><a href='https://poopatrol.github.io/ugly.html'>click to double check</a></h1>"
+    console.log(nameValue);
+    uglyValue.innerHTML ="<h1>" + nameValue + ", you are ugly!</h1>";
+    linkEl.innerHTML = "<h1><a href='/ugly.html'>click to double check</a></h1>"
   }
 
-  var uglyText1 = document.createElement("div");
-  uglyText1.className = "ugly";
-  uglyText1.textContent = "ugly!"
-  document.body.appendChild(uglyText1);
+  $("#ugly-form").on("submit", function(){
+    event.preventDefault();
+    console.log("hi");
+    result();
+  });
 
-  var uglyText2 = document.createElement("div");
-  uglyText2.className = "ugly";
-  uglyText2.textContent = "ugly!"
-  document.body.appendChild(uglyText2);
+  // animation for ugly squares
 
-  var uglyText3 = document.createElement("div");
-  uglyText3.className = "ugly";
-  uglyText3.textContent = "ugly!"
-  document.body.appendChild(uglyText3);
+  var uglyArray = Array('ugly!', 'ugly!!', 'ugly!!', 'ugly!');
+  for (i=0; i < uglyArray.length; i++){
+    $('<div class="ugly">').text(uglyArray[i]).appendTo('body');
+  };
+
+  var $uglyPointers = $(".ugly");
+
+  var uglyPositions =  function(){
+    $uglyPointers.each(function(){
+      var $uglyPointer = $(this);
+      var newLeft = (getRandomInt(0, 100)) * innerWidth/110;
+      var newTop = (getRandomInt(0, 100)) * innerHeight/110;
+      $uglyPointer.css("left", (newLeft + "px"));
+      $uglyPointer.css("top", (newTop + "px"));
+      console.log(newLeft, newTop);
+    });
+  }
 
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+  }
 
-  var makeItMove = function() {
-      var newLeft1 = (getRandomInt(0, 100)) * innerWidth/110
-      var newTop1 = (getRandomInt(0, 100)) * innerHeight/110
 
-      var newLeft2 = (getRandomInt(0, 100)) * innerWidth/110
-      var newTop2 = (getRandomInt(0, 100)) * innerHeight/110
-
-      var newLeft3 = (getRandomInt(0, 100)) * innerWidth/110
-      var newTop3 = (getRandomInt(0, 100)) * innerHeight/110
-      
-      uglyText1.style.left = newLeft1 + "px";
-      uglyText1.style.top = newTop1 + "px";
-
-      uglyText2.style.left = newLeft2 + "px";
-      uglyText2.style.top = newTop2 + "px";
-            
-      uglyText3.style.left = newLeft3 + "px";
-      uglyText3.style.top = newTop3 + "px";
-
-    }
-
-  // Step 3: Call that on an interval
-  window.setInterval(makeItMove, 1000);
+  // Call that on an interval
+  window.setInterval(uglyPositions, 1000);
 
 
 </script>
