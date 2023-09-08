@@ -51,6 +51,14 @@
         animation-iteration-count: infinite;
     }
 
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
   </style>
 
 </head>
@@ -77,8 +85,11 @@
   </nav>
 
 <img src="https://github.com/poopatrol/poopatrol.github.io/blob/main/fish.png?raw=true" alt = "wikimedia commons fish" id = "fish"/>
-<a href = "https://commons.wikimedia.org/wiki/File:Cartoon_fish_yellow.png">fish credits: Kurtkaiser, CC0, via Wikimedia Commons</a>
-
+<h1>POINTS: 0</h1>
+<br>
+<div class = "footer"><a href = "https://commons.wikimedia.org/wiki/File:Cartoon_fish_yellow.png">fish credits: Kurtkaiser, CC0, via Wikimedia Commons</a>
+    <a href="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nigiri_Sushi_%2825966163204%29.jpg">Tim Reckmann from Hamm, Deutschland, CC BY 2.0 via Wikimedia Commons</a>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
@@ -88,28 +99,33 @@
 
 <script>
 
-var fishSpeed = 10;
-
+var fishSpeed = 12;
+var points = 0;
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+
 $('#fish').on("click", function(){
-    fishSpeed = fishSpeed - 2;
-    console.log(fishSpeed);
-    $("<img>").attr("src", "https://github.com/poopatrol/poopatrol.github.io/blob/main/fish.png?raw=true")
+    points = points + 1;
+    fishSpeed = fishSpeed-1;
+    $("<img>").attr("src", "https://github.com/poopatrol/poopatrol.github.io/blob/main/orangefish.png?raw=true")
         .attr("alt","wikimedia commons fish")
         .addClass("fishcl")
-        .css("animation-duration", getRandomInt(5,15)+"s")
-        .css("top", getRandomInt(0,600) + "px")
+        .css("animation-duration", getRandomInt(5,9)+"s")
+        .css("top", getRandomInt(150,600) + "px")
         .appendTo("body");
  
     $("#fish").css("animation-duration", fishSpeed+"s");
     $("#fish").css("top", 150+getRandomInt(0,500) +"px");
-    console.log($(".fishcl"));
+    $("h1").text("POINTS: "+points);
 
+    if (points > 2){
+        $("<img>").attr("src", "https://upload.wikimedia.org/wikipedia/commons/c/c5/Nigiri_Sushi_%2825966163204%29.jpg")
+        .attr("alt","wikimedia commons sushi")
+    }
 });
 
 </script>
