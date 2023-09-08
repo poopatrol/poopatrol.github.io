@@ -35,10 +35,12 @@
         position: absolute;
         top: 150px;
         left: 0px;
+        cursor: help;
         animation-name: mymove;
         animation-duration: 10s;
         overflow: hidden;
         animation-iteration-count: infinite;
+        animation-play-state: running;
     }
 
     .fishcl {
@@ -49,7 +51,9 @@
         animation-duration: 10s;
         overflow: hidden;
         animation-iteration-count: infinite;
+        animation-play-state: running;
     }
+
 
     .footer {
         position: fixed;
@@ -85,7 +89,10 @@
   </nav>
 
 <img src="https://github.com/poopatrol/poopatrol.github.io/blob/main/fish.png?raw=true" alt = "wikimedia commons fish" id = "fish"/>
-<h1>POINTS: 0</h1>
+
+<div id="overlay"></div>
+<br>
+<h1>CATCH 10 YELLOW FISH TO WIN A PRIZE <br> POINTS: 0</h1>
 <br>
 <div class = "footer"><a href = "https://commons.wikimedia.org/wiki/File:Cartoon_fish_yellow.png">fish credits: Kurtkaiser, CC0, via Wikimedia Commons</a>
     <a href="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nigiri_Sushi_%2825966163204%29.jpg">Tim Reckmann from Hamm, Deutschland, CC BY 2.0 via Wikimedia Commons</a>
@@ -111,9 +118,10 @@ function getRandomInt(min, max) {
 $('#fish').on("click", function(){
     points = points + 1;
     fishSpeed = fishSpeed-1;
+
     $("<img>").attr("src", "https://github.com/poopatrol/poopatrol.github.io/blob/main/orangefish.png?raw=true")
         .attr("alt","wikimedia commons fish")
-        .addClass("fishcl")
+        .addClass("fishcl overlay")
         .css("animation-duration", getRandomInt(5,9)+"s")
         .css("top", getRandomInt(150,600) + "px")
         .appendTo("body");
@@ -122,9 +130,15 @@ $('#fish').on("click", function(){
     $("#fish").css("top", 150+getRandomInt(0,500) +"px");
     $("h1").text("POINTS: "+points);
 
-    if (points > 2){
-        $("<img>").attr("src", "https://upload.wikimedia.org/wikipedia/commons/c/c5/Nigiri_Sushi_%2825966163204%29.jpg")
-        .attr("alt","wikimedia commons sushi")
+    if (points === 10){
+        $("<img>").attr("src", "https://github.com/poopatrol/poopatrol.github.io/blob/main/sushi.jpg?raw=true")
+            .attr("alt","wikimedia commons sushi")
+            .css("max-width", "90%")
+            .appendTo("body");
+        $("#fish").hide();
+        $(".fishcl").hide();
+        $("h1").text("YOU WIN!!!!!!!!")
+            .css("font-size", "50px")
     }
 });
 
