@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lumen/bootstrap.min.css" rel="stylesheet">
+ 
+  <style>
+
+#main-div {
+    margin: 30px;
+}
+  </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"> </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+  <div id = "main-div">
+    <br>
+    <h1> Online and Media Research  </h1>
+    <br>
+    <h3>Enter subject name - exact searches will be conducted</h3>
+    <p>
+    <form id = "subject-form">
+      <input name="text" id = "input-name">
+      <br>
+      <br>
+      <h3>Google searches</h3>
+      <button type="submit" value="english">English</button>
+      <button type="submit" value="portuguese">Portuguese</button>
+      <button type="submit" value="spanish">Spanish</button>
+      <button type="submit" value="french">French</button>
+      <button type="submit" value="chinese">Chinese <br> (trad and simp - Google)</button>
+      <button type="submit" value="baidu-chinese">Chinese <br>(trad and simp - Baidu) <br> Warning: a lot of tabs!</button>
+      <br>
+      <br>
+      <h3>Databases and Websites</h3>
+    </form>
+    </p>
+  </div>
+
+  
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+const ENGLISH_GOOGLE_SEARCH_STRING = ['crime | fraud | conned | scandal | probe | investigate | scam | illegal | allege | controversy | prison | embezzle | arrest | triad | convict | litigate | violate | indict | manipulate | corrupt | crook | felon | misdemeanor | cheat | swindle ', ' misappropriate | breach | abuse | misuse | defraud | deceive | deception | "rip * off" | guilt | bankrupt | bribe | jail | kickback | launder | trafficking | infamous | bail | disqualify | sue | sfc | icac | sex | rape | accuse | defend ', ' plaintiff | extort | negligence | offence | prosecute | sanction | penalty | terrorist | suspend | judgement | judgment | lawsuit | manipulate | misappropriate | misconduct | misdemeanor | mismanage | slave | "forced labour" | "forced labor" | "child labour" | "child labor" | servant | servitude | exploitation ', ' inside | scheme | charge']
+
+const SPANISH_GOOGLE_SEARCH_STRING = ['crimen | fraude | estafa | escándalo | investigar | investigacion | estafa | ilegal | alegar | controversia | prisión | desfalco | arresto | tríada | condenar | litigar | violar | acusar | manipular | corromper | ladrón | delincuente | delito menor | engañar | estafa ', ' apropiación indebida | trafico de influencias | asesinato | ilícitamente | coaccionar | violación | abuso | mal uso | defraudar | engañar | engaño | "estafa" | culpa | imputado | condena | querella | quiebra | soborno | cárcel | lavado | tráfico | infame | fianza | descalificar | demandar ', ' sexo | violación | acusar | defender | demandante | extorsionar | mentir | prevaricación | amenazar | negligencia | ofensa | enjuiciar | perseguir | fiscalía | fiscal | anticorrupción | sanción | penalización | terrorista | suspender | juicio | demanda | manipular | apropiación indebida | mala conducta ', ' delito menor | mala gestión | esclavo | "trabajo forzoso" | "trabajo infantil" | sirviente | servidumbre | explotación | esquema | inhabilitación']
+
+const PORTUGUESE_GOOGLE_SEARCH_STRING = ['abuso | assedio | conflito | controversia | disputa | escandalo | falencia | lavagem | manipulaçao | manipulaçoes | prisao | propina | roubo | trafico | corrupçao | corrupçoes | beneficio | violação | violações | alegaçao | alegaçoes | condenaçao | condenaçoes | crime | culpado ', ' culpada | denuncia | fraude | golpe | ilegal | investigaçao | investigaçoes | litigio | multa | processo | improbidade | inidoneo | réu | adjudicaçao | adjudicaçoes | depoimento | intimaçao | intimaçoes | apreensao| apreender | apreendido | apreendida | mandado | prender | preso ', ' deter | detido | detençao | assalto | assaltar | assaltado | assaltada | assaltou | agressao | agredido | agredida | agredir | agrediu | (congela AND ativo) | falência | chantagem | infraçao | infraçoes | subornar | suborno | subornou | subornada | subornado | "ação coletiva" | contrabando ', ' condenado | condenada | condenou | corrompido | falsificou | falsificar | falso | imitaçao | imitou | "processo judicial" | tribunal | "traficante de drogas" | enganar | engano | depravaçao | desqualificado | desqualificada | desqualificaçao | drogado | drogada | viciado | viciada | defraudou | extorquiu | criminoso ', ' criminosa | incriminado | incriminada | sançao | sançoes | sancionado | sancionada | punido | punida | puniçao | fugitivo | fugitiva | delito | ilícito | aprisionado | aprisionada | cadeia | encarcerado | encarcerada | recluso | reclusa | acusado | acusada | sequestrado | sequestrada ', ' injunçao | raptado | raptada | abusador | abusadora | roubado | roubada | roubou | furtado | furtada | furtou | "lavagem de dinheiro" | lavou | evasao | pleito | mafioso | mafiosa | mafia | facçao | criminosa | manipulaçao | delinquencia | delinquente | assassino | assassina ', ' assassinato | assassinou | homicidio | narcotrafico | narcotico | nefasto | "mau comportamento" | "politicamente exposta" | politico | proibido | julgado | ofensiva | ataque | atacou | extorsao | escroque | penalidade | pena | escândalo | sexual | contrabando | contrabandista | contrabandeou | clandestino | clandestinidade ', ' terrorista | sentença | julgamento | acordo | infrator | infratora | leniencia']
+
+const FRENCH_GOOGLE_SEARCH_STRING = ['abus | abuser | allégation | alléguer | arrestation | arrêter | banqueroute | blanchire | blanchiment | compromettre | compromission | conflit | corruption | corrompu | contrebande | condamner | contravention | contrevenir | contrefaction | crime | culpabilité | coupable | "détournement de fonds" | delit | deshonneur ', ' détention | détenir | drogue | enfreindre | emprisonner | extorquer | faillite | "faute professionnelle" | fuir | fuite | fraude | "garde prévue" | illégal | incriminer | inculper | illicite | incarcérer | infraction | liquidation | litige | "liberté conditionnelle" | mafia | malhonnête | manquement | "mettre en accusation" ', ' "mis en accusation" | "mis en examen" | "mettre en examen" | meurtre | narco* | "mauvaise conduit" | plainte | "pot de vin" | prison | "poursuite judiciaire" | procès | prohiber | prohibition | sexuel | scandal | soudoyer | suborner | tromperie | violer']
+
+const SIMPLIFIED_AND_TRADITIONAL_CHINESE_GOOGLE_SEARCH_STRING = ['贿 | 賄 | 非法 | 滥 | 濫 | 走私 | 假帐 | 假帳 | 调查 | 調查 | 官司 | 违反 | 違反 | 诽谤 | 誹謗 | 丑闻 | 醜聞 | 争议 | 爭議 | 被捕 | 狱 | 獄', '破产 | 破產 | 误导 | 誤導 | 操纵 | 操縱 | 操控 | 黑社会 | 黑社會 | 黑钱 | 黑錢 | 赌 | 賭 | 指控 | 控告 | 盗 | 盜 | 窃 | 竊 | 罪 | 欺 | 骗', '騙 | 抢 | 搶 | 奸 | 姦 | 嫖 | 淫 | 廉政公署 | 廉署 | 证监会 | 證監會 | 除牌 | 警告 | 警戒 | 避税 | 避稅 | 逃税 | 逃稅 | 内幕 | 內幕 | 回扣', '证期局 | 證期局 | 反贪 | 反貪 | 惩戒 | 懲戒 | 裁罚 | 裁罰 | 处分 | 處分 | 舞弊 | 诉讼 | 訴訟 | 指责 | 指責 | 判决 | 判決 | 投诉 | 投訴 | 审判', '審判 | 开庭 | 開庭 | 双规 | 雙規 | 检察官 | 檢察官 | 监察 | 監察 | 黑箱 | 违法 | 違法 | 违纪 | 違紀 | 处罚 | 處罰 | 虚假 | 虛假 | 刑事 | 纠纷', '糾紛 | 案件 | 腐败 | 腐敗 | 撤职 | 撤職 | 停职 | 停職 | 色情 | 奴隶 | 奴隸 | 从器件 | 從器件 | 强迫劳动 | 強迫勞動 | 强制劳动 | 強制勞動 | 强迫劳工', '強迫勞工 | 童工 | 仆人 | 僕人 | 仆役 | 僕役 | 剥削 | 剝削 | 委员 | 委員 | 人大 | 人民代表大会 | 人民代表大會 | 书记 | 書記 | 党员 | 黨員 | 党派', '黨派 | 政治局 | 机关 | 機關 | 秘书长 | 秘書長 | 党代表 | 黨代表 | 中纪委 | 中紀委 | 省委 | 市委 | 区委 | 區委 | 地委 | 村委 | 干部 | 幹部', '政员 | 政員 | 领导 | 領導 | 官员 | 官員 | 局长 | 局長 | 危机 | 危機 | 隐患 | 隱患 | 涉嫌 | 欺诈 | 欺詐 | 异常 | 異常 | 骗局 | 騙局 | 疑点', '疑點 | 立案 | 亏损 | 虧損 | 负债 | 負債 | 停牌 | 跌停 | 暴跌 | 资金链 | 資金鏈 | 下降 | 漏洞 | 陷阱 | 谎言 | 謊言 | 举报 | 舉報 | 失信 | 维权', '維權 | 道歉 | 索赔 | 索賠 | 未履行 | 问询 | 問詢 | 辞职 | 辭職 | 裁员 | 裁員 | 失联 | 失聯 | 买单 | 買單 | 红线 | 紅線 | 被查 | 点名 | 點名', '黑名单 | 黑名單 | 黑历史 | 黑歷史 | 抄袭 | 抄襲 | 烂摊子 | 爛攤子 | 摊上事 | 攤上事 | 完蛋 | 倒闭 | 倒閉 | 烂尾 | 爛尾 | 坑 | 坑爹 | 失望', '黑心 | 黑幕 | 黑料 | 爆料 | 骗人 | 騙人 | 忽悠 | 造假 | 恶意 | 惡意 | 打脸 | 打臉 | 震惊 | 震驚 | 揭秘 | 惊人 | 驚人 | 真相 | 吐槽 | 深扒', '扒一扒 | 乱收费 | 亂收費 | 欠钱 | 欠錢 | 挪用 | 蒸发 | 蒸發 | 内斗 | 內鬥 | 撕逼 | 跑路 | 老赖 | 老賴']
+
+const BAIDU_SIMPLIFIED_AND_TRADITIONAL_CHINESE_GOOGLE_SEARCH_STRING = ['贿 | 賄 | 非法 | 滥 | 濫 | 走私 | 假帐 | 假帳 | 调查 | 調查 | 官司', '违反 | 違反 | 诽谤 | 誹謗 | 丑闻 | 醜聞 | 争议 | 爭議 | 被捕 | 狱 | 獄', '破产 | 破產 | 误导 | 誤導 | 操纵 | 操縱 | 操控 | 黑社会 | 黑社會', '黑钱 | 黑錢 | 赌 | 賭 | 指控 | 控告 | 盗 | 盜 | 窃 | 竊 | 罪 | 欺 | 骗', '騙 | 抢 | 搶 | 奸 | 姦 | 嫖 | 淫 | 廉政公署 | 廉署 | 证监会 | 證監會', '除牌 | 警告 | 警戒 | 避税 | 避稅 | 逃税 | 逃稅 | 内幕 | 內幕 | 回扣', '证期局 | 證期局 | 反贪 | 反貪 | 惩戒 | 懲戒 | 裁罚 | 裁罰 | 处分 | 處分', '舞弊 | 诉讼 | 訴訟 | 指责 | 指責 | 判决 | 判決 | 投诉 | 投訴 | 审判', '審判 | 开庭 | 開庭 | 双规 | 雙規 | 检察官 | 檢察官 | 监察 | 監察 | 黑箱', '违法 | 違法 | 违纪 | 違紀 | 处罚 | 處罰 | 虚假 | 虛假 | 刑事 | 纠纷', '糾紛 | 案件 | 腐败 | 腐敗 | 撤职 | 撤職 | 停职 | 停職 | 色情 | 奴隶', '奴隸 | 从器件 | 從器件 | 强迫劳动 | 強迫勞動 | 强制劳动 | 強制勞動 | 强迫劳工', '強迫勞工 | 童工 | 仆人 | 僕人 | 仆役 | 僕役 | 剥削 | 剝削 | 委员', '委員 | 人大 | 人民代表大会 | 人民代表大會 | 书记 | 書記 | 党员 | 黨員 | 党派', '黨派 | 政治局 | 机关 | 機關 | 秘书长 | 秘書長 | 党代表 | 黨代表', '中纪委 | 中紀委 | 省委 | 市委 | 区委 | 區委 | 地委 | 村委 | 干部 | 幹部', '政员 | 政員 | 领导 | 領導 | 官员 | 官員 | 局长 | 局長 | 危机 | 危機', '隐患 | 隱患 | 涉嫌 | 欺诈 | 欺詐 | 异常 | 異常 | 骗局 | 騙局 | 疑点', '疑點 | 立案 | 亏损 | 虧損 | 负债 | 負債 | 停牌 | 跌停 | 暴跌 | 资金链', '資金鏈 | 下降 | 漏洞 | 陷阱 | 谎言 | 謊言 | 举报 | 舉報 | 失信 | 维权', '維權 | 道歉 | 索赔 | 索賠 | 未履行 | 问询 | 問詢 | 辞职 | 辭職', '裁员 | 裁員 | 失联 | 失聯 | 买单 | 買單 | 红线 | 紅線 | 被查 | 点名 | 點名', '黑名单 | 黑名單 | 黑历史 | 黑歷史 | 抄袭 | 抄襲 | 烂摊子 | 爛攤子', '摊上事 | 攤上事 | 完蛋 | 倒闭 | 倒閉 | 烂尾 | 爛尾 | 坑 | 坑爹 | 失望', '黑心 | 黑幕 | 黑料 | 爆料 | 骗人 | 騙人 | 忽悠 | 造假 | 恶意 | 惡意', '打脸 | 打臉 | 震惊 | 震驚 | 揭秘 | 惊人 | 驚人 | 真相 | 吐槽 | 深扒', '扒一扒 | 乱收费 | 亂收費 | 欠钱 | 欠錢 | 挪用', '蒸发 | 蒸發 | 内斗 | 內鬥 | 撕逼 | 跑路 | 老赖 | 老賴']
+
+
+// results when you click button
+
+  function result(searchString) {
+    var nameValue = document.getElementById("input-name").value;
+    var stringCount = 0;
+    for(var stringCount = 0; stringCount < searchString.length; stringCount++) {
+        window.open('https://www.google.com/search?q='+searchString[stringCount]+' \"' + nameValue +'\"', "_blank");
+        console.log(stringCount);
+    }
+    
+  }
+
+  function baiduResult(searchString) {
+    var nameValue = document.getElementById("input-name").value;
+    var stringCount = 0;
+    for(var stringCount = 0; stringCount < searchString.length; stringCount++) {
+        window.open('https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baiduadv&wd=\"' + nameValue +'\" ('+searchString[stringCount]+') ', "_blank");
+        console.log(stringCount);
+    }
+  }
+
+
+let form = document.getElementById("subject-form");
+form.addEventListener("submit", handleSubmit);
+
+function handleSubmit(event) {
+    event.preventDefault()
+    submitter = event.submitter.value
+    switch (submitter) {
+        case "english":
+            console.log("english");
+            result(ENGLISH_GOOGLE_SEARCH_STRING);
+            break;
+        case "portuguese":
+            console.log("portuguese");
+            result(PORTUGUESE_GOOGLE_SEARCH_STRING);
+            break;
+        case "spanish":
+            console.log("spanish");
+            result(SPANISH_GOOGLE_SEARCH_STRING);
+            break;
+        case "french":
+            console.log("french");
+            result(FRENCH_GOOGLE_SEARCH_STRING);
+            break;
+        case "chinese":
+            console.log("chinese");
+            result(SIMPLIFIED_AND_TRADITIONAL_CHINESE_GOOGLE_SEARCH_STRING);
+            break; 
+        case "baidu-chinese":
+            console.log("baidu-chinese");
+            baiduResult(BAIDU_SIMPLIFIED_AND_TRADITIONAL_CHINESE_GOOGLE_SEARCH_STRING);
+            break; 
+    }
+
+
+}
+
+</script>
+
+</html>
+
+<!-- 
+
+TO DO 
+
+
+self.PRC_LBR_WEBPAGES = ['https://wenshu.court.gov.cn/', 
+'http://zxgk.court.gov.cn/zhzxgk/', 
+'http://rmfygg.court.gov.cn/', 
+'https://online.tolfin.com/TolfinV2/#',
+'https://pccz.court.gov.cn/pcajxxw/index/xxwsy', 
+'https://tingshen.court.gov.cn/', 
+'http://www.12388.gov.cn/', 
+'https://www.lawxin.com/', 
+'https://www.12309.gov.cn/', 
+f'{self.name} site:http://www.csrc.gov.cn/', 
+'https://www.ccdi.gov.cn/', 
+f'{self.name} inurl:.gov.cn']
+
+self.PRC_CORPORATE_WEBPAGES = ['https://jianweidata.com/', 
+      'https://cfws.samr.gov.cn/', 
+      'https://www.creditchina.gov.cn', 
+      'https://www.qcc.com/', 
+      'https://www.tianyancha.com/', 
+      'https://xin.xin/login']
+
+self.HK_WEBPAGES = ['http://icris.cr.gov.hk/', 
+'https://e-services.oro.gov.hk/general_en.html',
+'https://jianweidata.com/', 
+f'https://di.hkex.com.hk/di/NSSrchPersonList.aspx?sa1=pl&scsd=01/01/1900&sced={self.TODAY_SLASH}&pn={self.name}', 
+f'https://di.hkex.com.hk/filing/di/NSSrchPersonList.aspx?sa1=pl&scsd=01/01/1900&sced=03/10/2017&pn={self.name}', 
+f'https://www3.hkexnews.hk/Search/EPS/EPSSearchResults.html?allWords=&exactPhrase={self.name}', 
+f'https://www3.hkexnews.hk/search/eps/epssearchresults_c.html?allwords=&exactphrase={self.name}', 
+'https://online.tolfin.com/TolfinV2/#', 
+f'https://legalref.judiciary.hk/lrs/common/search/searchbox_result.jsp?txtselectopt=11&isadvsearch=0&selDatabase=ALL&selDatabase=JU&selDatabase=RV&selDatabase=RS&selDatabase=PD&stem=1&selall=1&ncnValue=&ncnParagraph=&ncnLanguage=en&txtSearch={self.name}&query=Go%21&selSchct=FA&selSchct=CA&selSchct=HC&selSchct=CT&selSchct=DC&selSchct=FC&selSchct=LD&selSchct=OT&selallct=1', 
+'https://apps.sfc.hk/publicregWeb/searchByName?locale=en', 
+'https://apps.hkma.gov.hk/eng/index.php?c=search&m=search_by_name', 
+f'https://www.google.com/search?q={self.name}+site%3Awww.icac.org.hk', 
+f'https://www.google.com/search?q={self.name}+site%3Apolice.gov.hk', 
+f'https://www.google.com/search?q={self.name}+inurl%3A.gov.hk']
+
+self.UK_WEBPAGES = [f'https://www.google.com/search?q=(site%3Afca.org.uk+%7C+site%3Asfo.gov.uk+%7C+site%3Abankofengland.co.uk+%7C+site%3Aparliament.uk+%7C+site%3Agov.uk)+ {self.name}',
+'https://online.tolfin.com/TolfinV2/#',
+f'https://www.judiciary.uk/?s={self.name}&judgment_type=&jurisdiction=&post_type=judgment&after=&before={self.TODAY_DASH}&order=relevance',
+'http://www.trustonline.org.uk/',
+f'https://find-and-update.company-information.service.gov.uk/search?q={self.name}',
+f'https://casetracker.justice.gov.uk/search.do?search={self.name}',
+'https://efile.cefile-app.com/publicsearch/home',
+f'https://find-and-update.company-information.service.gov.uk/search/disqualified-officers?q={self.name}',
+f'https://register.fca.org.uk/s/search?q={self.name}&type=Companies',
+f'https://register.fca.org.uk/s/search?q={self.name}&type=Individuals'
+'https://wck2.companieshouse.gov.uk',
+'https://www.gov.uk/courts-tribunals',
+'https://www.insolvencydirect.bis.gov.uk/eiir/',
+'https://www.supremecourt.uk/decided-cases/index.html',
+'https://www.thelawpages.com/court-hearings-lists/',
+f'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?sort=rank&query=({self.name})&method=boolean&highlight=1&results=200&mask_path=/']
+
+self.SINGAPORE_WEBPAGES = [f'https://www.google.com/search?q={self.name}+%28site%3Agov.sg+%7C+site%3Asgx.com%2Fregulation+%7C+site%3Acase.org.sg+%7C+site%3Awshc.sg%29',
+  f'https://www.google.com/search?q={self.name}+%28site%3Asicc.gov.sg+%7C+site%3Asupremecourt.gov.sg+%7C+site%3Asingaporelawwatch.sg%29',
+  f'https://www.mas.gov.sg/regulation/enforcement/enforcement-actions?page=1&q={self.name}',
+  'https://online.tolfin.com/TolfinV2/#',
+  'https://www.bizfile.gov.sg/',
+  f'https://cse.google.com/cse?q={self.name}&cx=005736339503247151151:zdtcqykvf7i',
+  'https://www.judiciary.gov.sg/hearing-list',
+  'https://www.judiciary.gov.sg/judgments/judgments-case-summaries',
+  'https://www.lawnet.sg/lawnet/web/lawnet/free-resources',
+  'https://www.sccb.sg/login',
+  'https://www.sgx.com/regulation/directors-and-executive-officers-watchlist',
+  f'https://www.sgx.com/regulation/public-disciplinary-actions?value={self.name}',
+  'https://www.sgx.com/regulation/watch-list',
+  'https://www.sicc.gov.sg/hearings-judgments/judgments',
+  f'https://www.singaporelawwatch.sg/Results/PID/426/mcat/479/acat/1/evl/0/nsw/a/EDNSearch/{self.name}'] -->

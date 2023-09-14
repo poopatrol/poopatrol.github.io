@@ -26,19 +26,20 @@
     }
       
     @keyframes mymove {
-        from {left: 0%;}
+        from {left: -150px;}
         to {left: 95%;}
     }
     
+
     #fish {
         width: 250px;
         position: absolute;
         top: 150px;
         left: 0px;
         cursor: help;
+        overflow: hidden;
         animation-name: mymove;
         animation-duration: 10s;
-        overflow: hidden;
         animation-iteration-count: infinite;
         animation-play-state: running;
     }
@@ -54,6 +55,9 @@
         animation-play-state: running;
     }
 
+    .hide {
+      opacity: 0;
+    }
 
     .footer {
         position: fixed;
@@ -114,7 +118,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
 $('#fish').on("click", function(){
     points = points + 1;
     fishSpeed = fishSpeed-1;
@@ -125,10 +128,21 @@ $('#fish').on("click", function(){
         .css("animation-duration", getRandomInt(5,9)+"s")
         .css("top", getRandomInt(150,600) + "px")
         .appendTo("body");
+
+
+    $("#fish").css("animation-name", "none");
+        console.log($("#fish").css("animation-name"));
+        setTimeout(function ()
+          {
+              $("#fish").css("animation-name", "mymove")
+              .css("animation-duration", fishSpeed+"s")
+              .css("top", 150+getRandomInt(0,500) +"px");
+              console.log('yes');
+          }, 0);
  
-    $("#fish").css("animation-duration", fishSpeed+"s");
-    $("#fish").css("top", 150+getRandomInt(0,500) +"px");
     $("h1").text("POINTS: "+points);
+
+    console.log($("#fish").css("left"));
 
     if (points === 10){
         $("<img>").attr("src", "https://github.com/poopatrol/poopatrol.github.io/blob/main/sushi.jpg?raw=true")

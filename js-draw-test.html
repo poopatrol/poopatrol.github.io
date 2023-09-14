@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    canvas {
+        display: block;
+    }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <script>
+        function setup() {
+        let canvas = createCanvas(500, 500);
+        canvas.parent('sketch');
+        }
+
+
+var Beaver = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+Beaver.prototype.draw = function() {
+    this.y = constrain(this.y, 0, 500);
+    fill('black');
+    ellipse(this.x, this.y, 50,50);
+    console.log(this.y);
+};
+
+Beaver.prototype.hop = function() {
+      fill('black');
+      ellipse(this.x, this.y, 50,50);
+     this.y -= 5;
+     console.log('hop');
+ };
+
+Beaver.prototype.fall = function() {
+  ellipse(this.x, this.y, 50,50);
+     this.y += 5;
+ };
+
+var beaver = new Beaver(10, 300);
+
+function draw() {    
+  background(255, 255, 255);
+  beaver.draw();
+  if (keyIsPressed && (keyCode == 32)) {
+        beaver.hop();
+        console.log('hop');
+  } else {beaver.fall();} 
+};
+
+
+// var currentScene;
+
+// var drawScene1 = function() {
+//     currentScene = 1;
+//     background(100,230,200);
+//     fill(0, 85, 255);
+//     textSize(25);
+//     text("The Story of Winston", 10, 200);
+// };
+
+// var drawScene2 = function() {
+//     currentScene = 2;
+//     background(173, 239, 255);
+//     fill(7, 14, 145);
+//     textSize(25);
+//     text("Lil Winston is born!", 10, 100);
+// };
+
+// var drawScene3 = function() {
+//     currentScene = 3;
+//     background(173, 239, 255);
+//     fill(7, 14, 145);
+//     textSize(25);
+//     text("Winston grows up!", 10, 100);
+// };
+
+// function mousePressed() {
+//   console.log(currentScene);
+//     if (currentScene === 1) {
+//         drawScene2();
+//         console.log(currentScene);
+//     } else if (currentScene === 2) {
+//         drawScene3();
+//         console.log(currentScene);
+//     } else {
+//         drawScene1();
+//         console.log(currentScene);
+//     }
+// };
+
+    </script>
+    <div id="sketch"></div>
+
+  </body>
+</html>
