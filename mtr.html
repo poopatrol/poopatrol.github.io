@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" rel="stylesheet">
+ 
+  <style>
+
+    p {
+       animation: fontmove 3s infinite;
+    }
+
+    .container {
+        display: grid; 
+        align-items: center; 
+        text-align: center;
+        padding: 5%; 
+        }
+
+    .stationborder {
+    border: 20px dotted rgb(255, 255, 255);
+    animation-name: border-pulsate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    }
+
+    body {
+      animation-name: none;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes border-pulsate {
+    0%   { border-color: rgb(255, 255, 255); }
+    50%  { border-color: rgb(15, 15, 15); }
+    }
+
+   @keyframes adventurous-transition {
+      0% {background-color: #ee7d75;}
+      20% {background-color: #f8d77a;}
+      40% {background-color: #7bf790;}
+      60% {background-color: #76b4fa;}
+      80% {background-color: #8174fd;}
+      100% {background-color: #c073f3;}
+    }
+
+    @keyframes lazy-transition {
+      0% {background-color: #4b773e;}
+      50% {background-color: #45856c;}
+      100% {background-color: #3e4588;}
+    }
+      
+    @keyframes fontmove {
+        50% {font-size: 40px;}
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Hello</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor04">
+        <ul class="navbar-nav me-auto">
+            <li>
+                <a class="nav-link" href="/index.html">Are You Ugly</a>
+            </li>
+            <li>
+                <a class="nav-link" href="/waiting.html">Are We There Yet</a>
+            </li>
+            <li>
+                <a class="nav-link" href="/mtr.html">Station Selector</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class = "container">
+  <button id="lazy" value="lazy">Lazy</button>
+  <button id="adventurous" value="adventurous">Adventurous</button>
+  <button id="reset" value="reset">Reset</button>
+</div>
+<div class = "container" id = "borderbox">
+    <p id = "station"></p>
+</div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+var adventurous = ["Airport", "AsiaWorld-Expo", "Austin", "Che Kung Temple", "Cheung Sha Wan", "Choi Hung", "City One", "Diamond Hill", "Disneyland Resort", "Fanling", "Fo Tan", "Hang Hau", "Heng Fa Chuen", "Heng On", "Hin Keng", "HKU", "Kai Tak", "Kam Sheung Road", "Kennedy Town", "Kowloon Bay", "Kowloon Tong", "Kwai Fong", "Kwai Hing", "Lai Chi Kok", "Lai King", "Lo Wu", "LOHAS Park", "Lok Fu", "Lok Ma Chau", "Long Ping", "Ma On Shan", "Mei Foo", "Mong Kok", "Nam Cheong", "Ngau Tau Kok", "Olympic", "Po Lam", "Prince Edward", "Racecourse", "Sha Tin", "Sha Tin Wai", "Sham Shui Po", "Shau Kei Wan", "Shek Kip Mei", "Shek Mun", "Sheung Shui", "Siu Hong", "South Horizons", "Sung Wong Toi", "Sunny Bay", "Tai Po Market", "Tai Shui Hang", "Tai Wai", "Tai Wo", "Tai Wo Hau", "Tin Shui Wai", "To Kwa Wan", "Tsing Yi", "Tsuen Wan", "Tuen Mun", "Tung Chung", "University", "Whampoa", "Wong Tai Sin", "Wu Kai Sha", "Yau Tong"];
+
+var lazy = ["Admiralty", "Causeway Bay", "Central", "Chai Wan", "Exhibition Centre", "Fortress Hill", "Ho Man Tin", "Hung Hom", "Jordan", "Kowloon", "Kwun Tong", "Lam Tin", "Lei Tung", "North Point", "Ocean Park", "Quarry Bay", "Sai Wan Ho", "Sai Ying Pun", "Sheung Wan", "Tai Koo", "Tin Hau", "Tiu Keng Leng", "Tseung Kwan O", "Tsim Sha Tsui", "Wan Chai", "Wong Chuk Hang", "Yau Ma Tei", "Yuen Long"];
+
+function get_random (list) {
+  return list[Math.floor((Math.random()*list.length))];
+}
+
+
+$("#lazy").on("click", function(){
+    $("body").css("animation-name", "lazy-transition");
+    $("#station").text(get_random(lazy));
+    $("#borderbox").addClass("stationborder");
+});
+
+$("#adventurous").on("click", function(){
+    $("body").css("animation-name", "adventurous-transition"); 
+    $("#station").text(get_random(adventurous));
+    $("#borderbox").addClass("stationborder");
+});
+
+$("#reset").on("click", function(){
+    $("body").css("animation-name", "none"); 
+    $("#station").text("");
+    $("#borderbox").removeClass("stationborder");
+});
+
+
+</script>
+
+</body>
+</html>
