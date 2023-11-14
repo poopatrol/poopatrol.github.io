@@ -8,9 +8,8 @@
   <style>
 
     p {
-       animation: fontmove 3s infinite;
+      font-size: 300%;
     }
-
     .container {
         display: grid; 
         align-items: center; 
@@ -18,31 +17,44 @@
         padding: 5%; 
         }
 
-    .stationborder {
+    .stationborderlazy{
     border: 20px dotted rgb(255, 255, 255);
-    animation-name: border-pulsate;
+    border-radius: 25px;
+    animation-name: border-pulsate-lazy;
     animation-duration: 1s;
     animation-iteration-count: infinite;
     }
 
+    .stationborderadventurous{
+    border: 20px dashed rgb(255, 255, 255);
+    border-radius: 25px;
+    animation-name: border-pulsate-adventurous;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    }
     body {
       animation-name: none;
       animation-duration: 1s;
       animation-iteration-count: infinite;
     }
 
-    @keyframes border-pulsate {
+    @keyframes border-pulsate-lazy {
     0%   { border-color: rgb(255, 255, 255); }
     50%  { border-color: rgb(15, 15, 15); }
     }
 
+    @keyframes border-pulsate-adventurous {
+    0%   { border-color: rgb(241, 5, 5); }
+    50%  { border-color: rgb(238, 241, 11); }
+    }
+
    @keyframes adventurous-transition {
-      0% {background-color: #ee7d75;}
+      0% {background-color: #eeb675;}
       20% {background-color: #f8d77a;}
-      40% {background-color: #7bf790;}
-      60% {background-color: #76b4fa;}
-      80% {background-color: #8174fd;}
-      100% {background-color: #c073f3;}
+      40% {background-color: #9ef77b;}
+      60% {background-color: #9376fa;}
+      80% {background-color: #bb74fd;}
+      100% {background-color: #f37384;}
     }
 
     @keyframes lazy-transition {
@@ -50,10 +62,7 @@
       50% {background-color: #45856c;}
       100% {background-color: #3e4588;}
     }
-      
-    @keyframes fontmove {
-        50% {font-size: 40px;}
-    }
+     
 
   </style>
 
@@ -108,19 +117,21 @@ function get_random (list) {
 $("#lazy").on("click", function(){
     $("body").css("animation-name", "lazy-transition");
     $("#station").text(get_random(lazy));
-    $("#borderbox").addClass("stationborder");
+    $("#borderbox").removeClass("stationborderadventurous");
+    $("#borderbox").addClass("stationborderlazy");
 });
 
 $("#adventurous").on("click", function(){
     $("body").css("animation-name", "adventurous-transition"); 
     $("#station").text(get_random(adventurous));
-    $("#borderbox").addClass("stationborder");
+    $("#borderbox").removeClass("stationborderlazy");
+    $("#borderbox").addClass("stationborderadventurous");
 });
 
 $("#reset").on("click", function(){
     $("body").css("animation-name", "none"); 
     $("#station").text("");
-    $("#borderbox").removeClass("stationborder");
+    $("#borderbox").removeClass("stationborderadventurous stationborderlazy");
 });
 
 
